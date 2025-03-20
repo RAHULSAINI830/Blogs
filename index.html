@@ -406,6 +406,9 @@
   </div>
   
   <script>
+    // Global variable to store the current category.
+    let currentCategory = "Service Field Management";
+    
     // Mapping category names to their respective image URLs.
     const categoryImages = {
       "Service Field Management": "https://i.pinimg.com/736x/66/87/b3/6687b33729cc73dd1d34c22d1af5c74c.jpg",
@@ -517,6 +520,7 @@
 
     // Function to render 6 category cards based on the selected category.
     function renderCategoryCards(category) {
+      currentCategory = category;  // Update global current category.
       const container = document.getElementById("categoryCards");
       container.innerHTML = "";
       const imageUrl = categoryImages[category];
@@ -575,11 +579,9 @@
     // Set up event listeners on category buttons.
     document.querySelectorAll(".categories button").forEach(button => {
       button.addEventListener("click", function() {
-        // Remove active class from all buttons and set this one as active.
         document.querySelectorAll(".categories button").forEach(btn => btn.classList.remove("active"));
         this.classList.add("active");
         const category = this.getAttribute("data-category");
-        // Clear search input when switching category.
         document.getElementById("categorySearch").value = "";
         renderCategoryCards(category);
       });
@@ -588,6 +590,15 @@
     // Set up search event listener on the search input.
     document.getElementById("categorySearch").addEventListener("input", function() {
       filterCategoryCards(this.value);
+    });
+    
+    // Attach click event listener to Explore More button.
+    document.getElementById("exploreButton").addEventListener("click", function() {
+      if (currentCategory === "Fire") {
+        // Navigate to fire.html if the current category is Fire.
+        window.location.href = "fire.html";
+      }
+      // Optionally, add similar behavior for other categories.
     });
     
     // Initially render the "Service Field Management" category.
