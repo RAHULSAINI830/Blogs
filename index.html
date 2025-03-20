@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latest Posts - Advanced Blog Grid</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    /* Enhanced Header Section */
+    .header {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+      font-size: 1.8rem;
+      background: linear-gradient(45deg, #ff6b6b, #f06595);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .header h1::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #ff6b6b, #f06595);
+      border-radius: 2px;
+    }
+    /* Main Blog Grid */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    /* Big Card (Featured Blog) */
+    .big-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .big-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .big-card .content {
+      padding: 15px;
+      background-color: #fafafa;
+      flex-grow: 1;
+    }
+    .big-card .tags {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .big-card .tag {
+      background: linear-gradient(45deg, #f06595, #ff6b6b);
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+    .big-card .tag:hover {
+      transform: scale(1.05);
+    }
+    .big-card h2 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .big-card p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    /* Small Cards (Other Blogs) */
+    .small-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .small-card {
+      display: flex;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .small-card img {
+      width: 40%;
+      object-fit: cover;
+    }
+    .small-card .content {
+      width: 60%;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .small-card .tags {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+    .small-card .tag {
+      background: linear-gradient(45deg, #f06595, #ff6b6b);
+      color: #fff;
+      padding: 4px 10px;
+      font-size: 0.85rem;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+    .small-card .tag:hover {
+      transform: scale(1.1);
+    }
+    .small-card h3 {
+      font-size: 1.6rem;
+      color: #333;
+      margin-top: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+    .small-card h3:hover {
+      color: #ff6b6b;
+    }
+    /* Categories Buttons Section */
+    .categories {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .categories button {
+      background: linear-gradient(45deg, #ff6b6b, #f06595);
+      border: none;
+      border-radius: 10px;
+      padding: 20px 80px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+    }
+    .categories button.active {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+    .categories button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    /* Search Bar Styles */
+    .search-container {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    .search-container input {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .search-container input:focus {
+      border-color: #ff6b6b;
+    }
+    /* Category Cards Section */
+    .category-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .category-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .img-container {
+      position: relative;
+    }
+    .category-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    /* Overlay for category tag on bottom-right corner */
+    .category-overlay {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+    .category-overlay .category-tag {
+      background: linear-gradient(45deg, #f06595, #ff6b6b);
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+    }
+    .category-card .content {
+      padding: 15px;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .extra-tags {
+      margin-bottom: 10px;
+    }
+    .extra-tags .tag {
+      background: linear-gradient(45deg, #f06595, #ff6b6b);
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      border-radius: 5px;
+      margin-right: 5px;
+      display: inline-block;
+    }
+    .category-card h2 {
+      font-size: 1.6rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .category-card p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+    /* Explore More Button Container */
+    .explore-container {
+      text-align: right;
+      margin-top: 20px;
+    }
+    .explore-btn {
+      background: none;
+      border: none;
+      color: #ff6b6b;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.3s;
+    }
+    .explore-btn:hover {
+      color: #f06595;
+    }
+    .explore-btn svg {
+      margin-right: 5px;
+    }
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .small-card {
+        flex-direction: column;
+      }
+      .small-card img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    @media (max-width: 768px) {
+      .categories button {
+        padding: 15px 40px;
+        font-size: 0.9rem;
+      }
+      .category-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .search-container input {
+        width: 90%;
+      }
+    }
+    @media (max-width: 480px) {
+      .category-cards {
+        grid-template-columns: 1fr;
+      }
+      .header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h1>Latest Posts</h1>
+    </div>
+    <!-- Existing Blog Grid -->
+    <div class="container">
+      <!-- Featured Blog (Big Card) -->
+      <div class="big-card">
+        <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Featured Image" />
+        <div class="content">
+          <div class="tags">
+            <span class="tag">Lifestyle</span>
+            <span class="tag">Travel</span>
+          </div>
+          <h2>Discover the Hidden Gems</h2>
+          <p>
+            Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await you.
+          </p>
+        </div>
+      </div>
+      <!-- Other Blogs (Small Cards) -->
+      <div class="small-cards">
+        <div class="small-card">
+          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 1" />
+          <div class="content">
+            <div class="tags">
+              <span class="tag">Food</span>
+              <span class="tag">Recipe</span>
+            </div>
+            <h3>Tasty Treats to Try</h3>
+          </div>
+        </div>
+        <div class="small-card">
+          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 2" />
+          <div class="content">
+            <div class="tags">
+              <span class="tag">Tech</span>
+              <span class="tag">Gadgets</span>
+            </div>
+            <h3>Latest Tech Innovations</h3>
+          </div>
+        </div>
+        <div class="small-card">
+          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 3" />
+          <div class="content">
+            <div class="tags">
+              <span class="tag">Health</span>
+              <span class="tag">Wellness</span>
+            </div>
+            <h3>Tips for a Balanced Life</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Buttons -->
+    <div class="categories">
+      <button data-category="Service Field Management" class="active">Service Field Management</button>
+      <button data-category="Fire">Fire</button>
+      <button data-category="Electrical">Electrical</button>
+      <button data-category="Plumbing">Plumbing</button>
+      <button data-category="HVAC">HVAC</button>
+    </div>
+    <!-- Search Bar (filters within selected category) -->
+    <div class="search-container">
+      <input type="text" id="categorySearch" placeholder="Search within selected category" />
+    </div>
+    <!-- Category Cards Grid -->
+    <div class="category-cards" id="categoryCards">
+      <!-- Category cards will be injected here via JavaScript -->
+    </div>
+    <!-- Explore More Button (visible only for categories other than Service Field Management) -->
+    <div class="explore-container" id="exploreContainer" style="display: none;">
+      <button class="explore-btn" id="exploreButton">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.293 8 10.146 5.854a.5.5 0 0 1 0-.708z"/>
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 1 8z"/>
+        </svg>
+        <!-- Button text will be updated dynamically -->
+      </button>
+    </div>
+  </div>
+  
+  <script>
+    // Mapping category names to their respective image URLs.
+    const categoryImages = {
+      "Service Field Management": "https://i.pinimg.com/736x/66/87/b3/6687b33729cc73dd1d34c22d1af5c74c.jpg",
+      "Fire": "https://wallpapers.com/images/featured/phoenix-q1mlwb6w8fyykvir.jpg",
+      "Electrical": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uk52heKjNovgbHevVaTFhM6zPVM5ka9lPgJa8Vf-rlh_mbwltwr5hfOUDG48JAbXQug&usqp=CAU",
+      "Plumbing": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJrYs7HtY-JzsnKgUpALf3DE72-sJ7N-THLZ-KP9idGPMaL7CBlLPIU2ePwReudKXfQ9o&usqp=CAU",
+      "HVAC": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-uk52heKjNovgbHevVaTFhM6zPVM5ka9lPgJa8Vf-rlh_mbwltwr5hfOUDG48JAbXQug&usqp=CAU"
+    };
+
+    // Mapping categories to arrays of sample titles.
+    const sampleTitles = {
+      "Service Field Management": [
+        "Efficient Service Strategies",
+        "Optimizing Field Operations",
+        "Innovative Service Solutions",
+        "Managing Field Workforces",
+        "Next-Gen Service Tactics",
+        "Streamlining Field Processes"
+      ],
+      "Fire": [
+        "Fire Safety Essentials",
+        "Preventing Fire Hazards",
+        "Modern Firefighting Techniques",
+        "Emergency Fire Response",
+        "Fire Risk Management",
+        "Innovative Fire Solutions"
+      ],
+      "Electrical": [
+        "Latest Electrical Innovations",
+        "Smart Electrical Systems",
+        "Efficient Energy Management",
+        "Electrical Safety Tips",
+        "Cutting-Edge Electrical Solutions",
+        "Future of Electrical Engineering"
+      ],
+      "Plumbing": [
+        "Plumbing Basics and Beyond",
+        "Efficient Plumbing Systems",
+        "Innovative Plumbing Solutions",
+        "Preventing Plumbing Issues",
+        "Modern Plumbing Techniques",
+        "Sustainable Plumbing Practices"
+      ],
+      "HVAC": [
+        "Advanced HVAC Solutions",
+        "Energy Efficient HVAC Systems",
+        "HVAC Maintenance Tips",
+        "Innovations in HVAC Technology",
+        "Improving Indoor Air Quality",
+        "HVAC System Optimization"
+      ]
+    };
+
+    // Mapping categories to arrays of sample tags (each card gets its own pair).
+    const sampleTags = {
+      "Service Field Management": [
+        ["Expert", "Innovative"],
+        ["Professional", "Efficient"],
+        ["Reliable", "Cutting-Edge"],
+        ["Customer Focused", "Proactive"],
+        ["Trusted", "Quality"],
+        ["Strategic", "Modern"]
+      ],
+      "Fire": [
+        ["Urgent", "Safe"],
+        ["Rapid", "Alert"],
+        ["Critical", "Life-saving"],
+        ["Emergency", "Prepared"],
+        ["Responsive", "Secure"],
+        ["Prevention", "Rescue"]
+      ],
+      "Electrical": [
+        ["Innovative", "Smart"],
+        ["Efficient", "Reliable"],
+        ["Modern", "Cutting-Edge"],
+        ["Sustainable", "Advanced"],
+        ["Tech-Savvy", "Secure"],
+        ["Dynamic", "Powerful"]
+      ],
+      "Plumbing": [
+        ["Reliable", "Quick"],
+        ["Efficient", "Affordable"],
+        ["Expert", "Proficient"],
+        ["Trusted", "Responsive"],
+        ["Quality", "Timely"],
+        ["Professional", "Innovative"]
+      ],
+      "HVAC": [
+        ["Comfort", "Eco"],
+        ["Efficient", "Smart"],
+        ["Advanced", "Reliable"],
+        ["Modern", "Sustainable"],
+        ["Optimal", "Cost-Effective"],
+        ["Precision", "Quality"]
+      ]
+    };
+
+    // Default link for each card (placeholder for now).
+    const defaultLink = "#";
+
+    // Function to update the Explore More button text based on category.
+    function updateExploreButton(category) {
+      const exploreButton = document.getElementById("exploreButton");
+      exploreButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.293 8 10.146 5.854a.5.5 0 0 1 0-.708z"/>
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 1 8z"/>
+        </svg> Explore More ${category} Blogs`;
+    }
+
+    // Function to render 6 category cards based on the selected category.
+    function renderCategoryCards(category) {
+      const container = document.getElementById("categoryCards");
+      container.innerHTML = "";
+      const imageUrl = categoryImages[category];
+      const titles = sampleTitles[category] || [];
+      const tagsArray = sampleTags[category] || [];
+      
+      for (let i = 0; i < 6; i++) {
+        const cardTitle = titles[i] || `${category} Card Title ${i+1}`;
+        const cardTags = tagsArray[i] || ["Trending", "Featured"];
+        // Create an anchor element so the whole card is clickable.
+        const cardLink = document.createElement("a");
+        cardLink.href = defaultLink;
+        cardLink.className = "category-card";
+        cardLink.innerHTML = `
+          <div class="img-container">
+            <img src="${imageUrl}" alt="${category} Image ${i+1}" />
+            <div class="category-overlay">
+              <span class="tag category-tag">${category}</span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="extra-tags">
+              <span class="tag">${cardTags[0]}</span>
+              <span class="tag">${cardTags[1]}</span>
+            </div>
+            <h2>${cardTitle}</h2>
+            <p>This is a sample description for ${category} card ${i+1}. Lorem ipsum dolor sit amet.</p>
+          </div>
+        `;
+        container.appendChild(cardLink);
+      }
+      
+      // Show or hide the Explore More button depending on the category.
+      const exploreContainer = document.getElementById("exploreContainer");
+      if (category !== "Service Field Management") {
+        exploreContainer.style.display = "block";
+        updateExploreButton(category);
+      } else {
+        exploreContainer.style.display = "none";
+      }
+    }
+    
+    // Function to filter category cards based on search query.
+    function filterCategoryCards(query) {
+      const cards = document.querySelectorAll("#categoryCards .category-card");
+      cards.forEach(card => {
+        const title = card.querySelector("h2").textContent.toLowerCase();
+        if (title.includes(query.toLowerCase())) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+    
+    // Set up event listeners on category buttons.
+    document.querySelectorAll(".categories button").forEach(button => {
+      button.addEventListener("click", function() {
+        // Remove active class from all buttons and set this one as active.
+        document.querySelectorAll(".categories button").forEach(btn => btn.classList.remove("active"));
+        this.classList.add("active");
+        const category = this.getAttribute("data-category");
+        // Clear search input when switching category.
+        document.getElementById("categorySearch").value = "";
+        renderCategoryCards(category);
+      });
+    });
+    
+    // Set up search event listener on the search input.
+    document.getElementById("categorySearch").addEventListener("input", function() {
+      filterCategoryCards(this.value);
+    });
+    
+    // Initially render the "Service Field Management" category.
+    renderCategoryCards("Service Field Management");
+  </script>
+</body>
+</html>
