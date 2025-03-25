@@ -17,7 +17,7 @@
       padding: 20px;
     }
     .wrapper {
-      max-width: 1200px;
+      max-width: 1500px;
       margin: 0 auto;
       padding: 0 15px;
     }
@@ -65,10 +65,13 @@
     .big-card {
       display: flex;
       flex-direction: column;
+      border: 1px solid #ddd;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
     .big-card img {
       width: 100%;
-      height: 300px;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
     }
     .big-card .content {
@@ -117,6 +120,7 @@
     }
     .small-card img {
       width: 40%;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
     }
     .small-card .content {
@@ -153,7 +157,7 @@
     .small-card h3:hover {
       color: #ff6b6b;
     }
-    /* All Tags Buttons Section (for filtering lower blogs) */
+    /* All Category Tags Buttons (for filtering upper category tags) */
     .tags-filter {
       text-align: center;
       margin-bottom: 20px;
@@ -176,22 +180,35 @@
     .tags-filter button:hover {
       transform: scale(1.05);
     }
-    /* Search Bar Styles */
+    /* Search Bar and Keyword Dropdown Styles */
     .search-container {
-      text-align: center;
+      
       margin: 20px 0 30px;
     }
     .search-container input {
       width: 80%;
-      max-width: 500px;
+      max-width: 1180px;
       padding: 10px 15px;
       font-size: 1rem;
       border: 2px solid #ddd;
-      border-radius: 25px;
+      border-radius: 8px;
       outline: none;
       transition: border-color 0.3s;
     }
     .search-container input:focus {
+      border-color: #ff6b6b;
+    }
+    .search-container select {
+      padding: 10px 15px;
+      font-size: 1rem;
+      width: 270px;
+      margin-left: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .search-container select:focus {
       border-color: #ff6b6b;
     }
     /* Lower Blog Cards Grid (Paginated) */
@@ -227,6 +244,13 @@
     }
     .tags-container {
       margin-bottom: 10px;
+    }
+    .tags-container.upper-tags {
+      /* Upper (category) tags styling */
+    }
+    .tags-container.lower-tags {
+      margin-top: 10px;
+      /* Lower (keyword) tags styling */
     }
     .tags-container .tag {
       display: inline-block;
@@ -304,8 +328,8 @@
         <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Featured Image" />
         <div class="content">
           <div class="tags">
-            <span class="tag">Lifestyle</span>
-            <span class="tag">Travel</span>
+            <span class="tag">Residential Fire Safety</span>
+            <span class="tag">Commercial Fire Safety</span>
           </div>
           <h2>Discover the Hidden Gems</h2>
           <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await you.</p>
@@ -317,8 +341,8 @@
           <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 1" />
           <div class="content">
             <div class="tags">
-              <span class="tag">Food</span>
-              <span class="tag">Recipe</span>
+              <span class="tag">Fire Safety Equipment</span>
+              <span class="tag">Fire Safety Software</span>
             </div>
             <h3>Tasty Treats to Try</h3>
           </div>
@@ -327,8 +351,8 @@
           <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 2" />
           <div class="content">
             <div class="tags">
-              <span class="tag">Tech</span>
-              <span class="tag">Gadgets</span>
+              <span class="tag">Fire Safety Inspections</span>
+              <span class="tag">Fire Protection & Safety</span>
             </div>
             <h3>Latest Tech Innovations</h3>
           </div>
@@ -337,22 +361,25 @@
           <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 3" />
           <div class="content">
             <div class="tags">
-              <span class="tag">Health</span>
-              <span class="tag">Wellness</span>
+              <span class="tag">Fire Safety Professionals</span>
+              <span class="tag">Fire Safety Regulations & Code</span>
             </div>
             <h3>Tips for a Balanced Life</h3>
           </div>
         </div>
       </div>
     </div>
-    <!-- Lower Section: All Tags Filter, Search, and Paginated Blog Cards -->
-    <!-- All Tags Buttons (Global Pool) -->
+    <!-- Lower Section: Category Filter Buttons, Search and Keyword Filter Dropdown, and Paginated Blog Cards -->
+    <!-- Upper Category Tags Buttons -->
     <div class="tags-filter" id="tagsFilter">
       <!-- Buttons will be injected via JavaScript -->
     </div>
-    <!-- Search Bar -->
+    <!-- Search Bar and Keyword Filter Dropdown -->
     <div class="search-container">
       <input type="text" id="blogSearch" placeholder="Search blogs by title" />
+      <select id="keywordFilter">
+        <option value="">All Keywords</option>
+      </select>
     </div>
     <!-- Blog Cards Grid (Paginated) -->
     <div class="blog-cards" id="blogCards">
@@ -363,22 +390,72 @@
   </div>
   
   <script>
-    // Global tag pool for filtering.
-    const globalTags = ["Trending", "Featured", "Popular", "New", "Hot", "Updated", "Exclusive"];
+    // Global arrays for filtering.
+    const globalCategories = [
+      "Fire Safety Professionals",
+      "Fire Safety Equipment",
+      "Fire Safety Regulations & Code",
+      "Fire Safety Software",
+      "Fire Safety Inspections",
+      "Residential Fire Safety",
+      "Commercial Fire Safety",
+      "Fire Protection & Safety",
+      "Fire Safety Events",
+      "Fire Safety Reports",
+      "Fire Safety Businesses"
+    ];
     
-    // Render tag filter buttons.
+    const globalKeywords = [
+      "Smoke Detectors",
+      "Fire Marshal",
+      "Fire Inspector",
+      "Fire Investigator",
+      "Fire Extinguishers",
+      "Fire Sprinklers",
+      "Fire Suppressions",
+      "Fire Alarms",
+      "Emergency Exit Codes",
+      "General Fire Codes",
+      "Regulatory Bodies",
+      "State Fire Codes",
+      "Fire Code Violations",
+      "Inspection Software",
+      "Firefighter Software",
+      "General Inspections",
+      "Equipment Inspections",
+      "Fire Safety Tips",
+      "Fire Safety Training",
+      "Fire Certifications",
+      "Fire Events",
+      "Residential Fire Safety",
+      "Fire Reports",
+      "Fire Safety Business",
+      "Fire Hydrant"
+    ];
+    
+    // Render upper category tag filter buttons.
     const tagsFilterContainer = document.getElementById("tagsFilter");
-    globalTags.forEach(tag => {
+    globalCategories.forEach(tag => {
       const btn = document.createElement("button");
       btn.textContent = tag;
       btn.setAttribute("data-tag", tag);
       tagsFilterContainer.appendChild(btn);
     });
     
-    // Variable to hold the currently active tag filter.
-    let activeTag = "";
+    // Populate keyword filter dropdown.
+    const keywordFilterSelect = document.getElementById("keywordFilter");
+    globalKeywords.forEach(keyword => {
+      const option = document.createElement("option");
+      option.value = keyword;
+      option.textContent = keyword;
+      keywordFilterSelect.appendChild(option);
+    });
     
-    // Blog data generation (30 blogs with same feature image, random title, random tags).
+    // Variables to hold active filters.
+    let activeCategory = "";
+    let activeKeyword = "";
+    
+    // Blog data generation (30 blogs with same feature image, random title, random categories and keywords).
     const featureImage = "https://wallpapers.com/images/featured/phoenix-q1mlwb6w8fyykvir.jpg";
     const totalBlogs = 30;
     const blogs = [];
@@ -397,16 +474,28 @@
       return words.join(" ");
     }
     
-    function generateRandomTags() {
-      const count = getRandomInt(2, 4);
-      const tags = [];
-      while (tags.length < count) {
-        const tag = globalTags[getRandomInt(0, globalTags.length - 1)];
-        if (!tags.includes(tag)) {
-          tags.push(tag);
+    function generateRandomCategories() {
+      const count = getRandomInt(1, 2);
+      const categories = [];
+      while (categories.length < count) {
+        const cat = globalCategories[getRandomInt(0, globalCategories.length - 1)];
+        if (!categories.includes(cat)) {
+          categories.push(cat);
         }
       }
-      return tags;
+      return categories;
+    }
+    
+    function generateRandomKeywords() {
+      const count = getRandomInt(2, 4);
+      const keywords = [];
+      while (keywords.length < count) {
+        const kw = globalKeywords[getRandomInt(0, globalKeywords.length - 1)];
+        if (!keywords.includes(kw)) {
+          keywords.push(kw);
+        }
+      }
+      return keywords;
     }
     
     for (let i = 1; i <= totalBlogs; i++) {
@@ -414,7 +503,8 @@
         id: i,
         title: generateRandomTitle(),
         description: `This is a sample description for blog post ${i}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        tags: generateRandomTags(),
+        categories: generateRandomCategories(),
+        keywords: generateRandomKeywords(),
         image: featureImage,
         link: "#"  // placeholder link
       });
@@ -424,13 +514,14 @@
     const blogsPerPage = 6;
     let currentPage = 1;
     
-    // Function to filter blogs based on activeTag and search query.
+    // Function to filter blogs based on active filters and search query.
     function getFilteredBlogs() {
       const searchQuery = document.getElementById("blogSearch").value.toLowerCase();
       return blogs.filter(blog => {
-        const matchesTag = activeTag ? blog.tags.includes(activeTag) : true;
+        const matchesCategory = activeCategory ? blog.categories.includes(activeCategory) : true;
         const matchesSearch = blog.title.toLowerCase().includes(searchQuery);
-        return matchesTag && matchesSearch;
+        const matchesKeyword = activeKeyword ? blog.keywords.includes(activeKeyword) : true;
+        return matchesCategory && matchesSearch && matchesKeyword;
       });
     }
     
@@ -448,13 +539,15 @@
         const card = document.createElement("a");
         card.href = blog.link;
         card.className = "blog-card";
-        const tagButtons = blog.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+        const categoryTags = blog.categories.map(cat => `<span class="tag">${cat}</span>`).join("");
+        const keywordTags = blog.keywords.map(kw => `<span class="tag">${kw}</span>`).join("");
         card.innerHTML = `
           <img src="${blog.image}" alt="Blog ${blog.id}" />
           <div class="content">
-            <div class="tags-container">${tagButtons}</div>
+            <div class="tags-container upper-tags">${categoryTags}</div>
             <h2>${blog.title}</h2>
             <p>${blog.description}</p>
+            <div class="tags-container lower-tags">${keywordTags}</div>
           </div>
         `;
         container.appendChild(card);
@@ -518,23 +611,26 @@
       updatePage();
     });
     
-    // Set up tag filter event listeners.
+    // Set up category tag filter event listeners.
     document.querySelectorAll(".tags-filter button").forEach(btn => {
       btn.addEventListener("click", function() {
         // Remove active state from all buttons and set active for clicked.
         document.querySelectorAll(".tags-filter button").forEach(b => b.classList.remove("active"));
         this.classList.add("active");
-        activeTag = this.getAttribute("data-tag");
+        activeCategory = this.getAttribute("data-tag");
         currentPage = 1;
         updatePage();
       });
     });
     
-    // If no tag is selected, show all blogs.
-    // Optionally, you can add a "Show All" button.
-    // For now, we let activeTag remain "" until a tag is clicked.
+    // Set up keyword filter dropdown event listener.
+    document.getElementById("keywordFilter").addEventListener("change", function() {
+      activeKeyword = this.value;
+      currentPage = 1;
+      updatePage();
+    });
     
-    // Initially render blogs (all tags)
+    // Initially render blogs (all filters)
     updatePage();
   </script>
 </body>
