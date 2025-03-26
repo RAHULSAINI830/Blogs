@@ -191,13 +191,15 @@
     }
 
     .tags-filter button {
-      background: linear-gradient(45deg, #ff6b6b, #f06595);
-      border: none;
-      border-radius: 8px;
-      padding: 8px 16px;
-      margin: 5px;
-      color: #fff;
-      font-size: 0.85rem;
+      display: inline-block;
+    background: linear-gradient(45deg, #572a39e6, #ff6b6b);
+    color: #fff;
+    padding: 12px 12px;
+    font-size: 15px;
+    border-radius: 5px;
+    margin: 3px 12px 10px 0;
+    border: 2px solid white;
+    font-weight: 600;
       cursor: pointer;
       transition: transform 0.3s, opacity 0.3s;
     }
@@ -218,13 +220,15 @@
 
     .search-container input {
       width: 80%;
-      max-width: 1180px;
-      padding: 10px 15px;
-      font-size: 1rem;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.3s;
+    max-width: 1180px;
+    padding: 15px 15px;
+    font-size: 1.2rem;
+    border: 2px solid #ee5566;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #ee556612;
+    font-style: italic;
     }
 
     .search-container input:focus {
@@ -232,14 +236,18 @@
     }
 
     .search-container select {
-      padding: 10px 15px;
-      font-size: 1rem;
+      padding: 15px 15px;
+      font-size: 1.2rem;
       width: 270px;
       margin-left: 10px;
-      border: 2px solid #ddd;
+      border: 2px solid #ee5566;
       border-radius: 8px;
       outline: none;
       transition: border-color 0.3s;
+      font-weight: 600;
+      background-color: #ee556612;
+      text-align: center;
+      font-style: italic;
     }
 
     .search-container select:focus {
@@ -264,7 +272,7 @@
       flex-direction: column;
       text-decoration: none;
       color: inherit;
-      background-color: #ee556630;
+      background-color: #ee556612;
     }
 
     .blog-card img {
@@ -296,13 +304,14 @@
 
     .tags-container .tag {
       display: inline-block;
-    background: linear-gradient(45deg, #f06595, #ff6b6b);
+    background: linear-gradient(45deg, #572a39e6, #ff6b6b);
     color: #fff;
     padding: 12px 12px;
     font-size: 15px;
     border-radius: 5px;
     margin: 3px 5px 3px 0;
     border: 2px solid white;
+    font-weight: 600;
     }
 
     /* NEW: Override for keyword tags (lower-tags) */
@@ -388,7 +397,7 @@
     <div class="container">
       <!-- Featured Blog (Big Card) -->
       <div class="big-card">
-        <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+        <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
           alt="Featured Image" />
         <div class="content">
           <div class="tags">
@@ -403,7 +412,7 @@
       <!-- Other Blogs (Small Cards) -->
       <div class="small-cards">
         <div class="small-card">
-          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
             alt="Blog Image 1" />
           <div class="content">
             <div class="tags">
@@ -411,10 +420,11 @@
               <span class="tag">Fire Safety Software</span>
             </div>
             <h3>Tasty Treats to Try</h3>
+            <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await</p>
           </div>
         </div>
         <div class="small-card">
-          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
             alt="Blog Image 2" />
           <div class="content">
             <div class="tags">
@@ -422,10 +432,11 @@
               <span class="tag">Fire Protection & Safety</span>
             </div>
             <h3>Latest Tech Innovations</h3>
+            <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await</p>
           </div>
         </div>
         <div class="small-card">
-          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
             alt="Blog Image 3" />
           <div class="content">
             <div class="tags">
@@ -433,6 +444,7 @@
               <span class="tag">Fire Safety Regulations & Code</span>
             </div>
             <h3>Tips for a Balanced Life</h3>
+            <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await</p>
           </div>
         </div>
       </div>
@@ -444,9 +456,9 @@
     </div>
     <!-- Search Bar and Keyword Filter Dropdown -->
     <div class="search-container">
-      <input type="text" id="blogSearch" placeholder="Search blogs by title" />
+      <input type="text" id="blogSearch" placeholder="Search Posts" />
       <select id="keywordFilter">
-        <option value="">All Keywords</option>
+        <option value="">Filter Posts</option>
       </select>
     </div>
     <!-- Blog Cards Grid (Paginated) -->
@@ -654,6 +666,7 @@
         });
         paginationContainer.appendChild(pageButton);
       }
+      
 
       // Next Button
       const nextButton = document.createElement("button");
