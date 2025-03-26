@@ -31,7 +31,7 @@
       margin-bottom: 30px;
     }
 
-    .header h1 {
+    .header p {
       font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
       font-size: 1.8rem;
       background: linear-gradient(45deg, #ff6b6b, #f06595);
@@ -42,7 +42,7 @@
       padding-bottom: 10px;
     }
 
-    .header h1::after {
+    .header p::after {
       content: "";
       position: absolute;
       bottom: 0;
@@ -75,9 +75,12 @@
     .big-card {
       display: flex;
       flex-direction: column;
-      border: 1px solid #ddd;
+      border: 1px solid #ee5566;
       background: #fff;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 25px;
+      background-color: #ee556612;
+      margin-bottom: 20px;
     }
 
     .big-card img {
@@ -88,7 +91,6 @@
 
     .big-card .content {
       padding: 15px;
-      background-color: #fafafa;
       flex-grow: 1;
     }
 
@@ -99,12 +101,14 @@
     }
 
     .big-card .tag {
-      background: linear-gradient(45deg, #f06595, #ff6b6b);
+      background: linear-gradient(45deg, #572a39e6, #ff6b6b);
       color: #fff;
-      padding: 5px 10px;
-      font-size: 0.9rem;
+      padding: 12px 12px;
+      font-size: 15px;
       border-radius: 5px;
       transition: transform 0.3s;
+      font-weight: 600;
+      border: 2px solid white;
     }
 
     .big-card .tag:hover {
@@ -131,40 +135,48 @@
 
     .small-card {
       display: flex;
-      border: 1px solid #ddd;
+      border: 1px solid #ee5566;
       background: #fff;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      border-radius: 25px;
       overflow: hidden;
+      background-color: #ee556612;
     }
 
     .small-card img {
       width: 40%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
+      height: 286px;
     }
 
+    /* Center align the content in small cards */
     .small-card .content {
       width: 60%;
       padding: 15px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: baseline;
+      text-align: left;
     }
 
     .small-card .tags {
       display: flex;
       gap: 10px;
       margin-bottom: 5px;
+      justify-content: center;
     }
 
     .small-card .tag {
-      background: linear-gradient(45deg, #f06595, #ff6b6b);
+      background: linear-gradient(45deg, #572a39e6, #ff6b6b);
       color: #fff;
-      padding: 4px 10px;
-      font-size: 0.85rem;
+      padding: 12px 12px;
+      font-size: 15px;
       border-radius: 5px;
       transition: transform 0.3s;
+      border: 2px solid white;
+      font-weight: 600;
     }
 
     .small-card .tag:hover {
@@ -178,6 +190,7 @@
       font-weight: 600;
       letter-spacing: 0.5px;
       transition: color 0.3s;
+      margin-bottom: 8px;
     }
 
     .small-card h3:hover {
@@ -192,14 +205,14 @@
 
     .tags-filter button {
       display: inline-block;
-    background: linear-gradient(45deg, #572a39e6, #ff6b6b);
-    color: #fff;
-    padding: 12px 12px;
-    font-size: 15px;
-    border-radius: 5px;
-    margin: 3px 12px 10px 0;
-    border: 2px solid white;
-    font-weight: 600;
+      background: linear-gradient(45deg, #572a39e6, #ff6b6b);
+      color: #fff;
+      padding: 12px 12px;
+      font-size: 15px;
+      border-radius: 5px;
+      margin: 3px 12px 10px 0;
+      border: 2px solid white;
+      font-weight: 600;
       cursor: pointer;
       transition: transform 0.3s, opacity 0.3s;
     }
@@ -220,21 +233,22 @@
 
     .search-container input {
       width: 80%;
-    max-width: 1180px;
-    padding: 15px 15px;
-    font-size: 1.2rem;
-    border: 2px solid #ee5566;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.3s;
-    background-color: #ee556612;
-    font-style: italic;
+      max-width: 1180px;
+      padding: 15px 15px;
+      font-size: 1.2rem;
+      border: 2px solid #ee5566;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s;
+      background-color: #ee556612;
+      font-style: italic;
     }
 
     .search-container input:focus {
       border-color: #ff6b6b;
     }
 
+    /* Custom select styling with a custom arrow icon */
     .search-container select {
       padding: 15px 15px;
       font-size: 1.2rem;
@@ -248,10 +262,18 @@
       background-color: #ee556612;
       text-align: center;
       font-style: italic;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M5 0 L0 5 L10 5 Z' fill='black'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
     }
 
+    /* When focused (clicked) change the arrow to point down */
     .search-container select:focus {
       border-color: #ff6b6b;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M0 5 L5 10 L10 5 Z' fill='black'/%3E%3C/svg%3E");
     }
 
     /* Lower Blog Cards Grid (Paginated) */
@@ -304,17 +326,17 @@
 
     .tags-container .tag {
       display: inline-block;
-    background: linear-gradient(45deg, #572a39e6, #ff6b6b);
-    color: #fff;
-    padding: 12px 12px;
-    font-size: 15px;
-    border-radius: 5px;
-    margin: 3px 5px 3px 0;
-    border: 2px solid white;
-    font-weight: 600;
+      background: linear-gradient(45deg, #572a39e6, #ff6b6b);
+      color: #fff;
+      padding: 12px 12px;
+      font-size: 15px;
+      border-radius: 5px;
+      margin: 3px 5px 3px 0;
+      border: 2px solid white;
+      font-weight: 600;
     }
 
-    /* NEW: Override for keyword tags (lower-tags) */
+    /* Override for keyword tags (lower-tags) */
     .tags-container.lower-tags .tag {
       border: 2px solid #ee5566;
       background: #fafafa;
@@ -364,7 +386,22 @@
       color: #fff;
     }
 
-    /* Responsive Styles */
+    /* Hover Pop-Up Effect for All Cards */
+    .big-card,
+    .small-card,
+    .blog-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .big-card:hover,
+    .small-card:hover,
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background-color: #ee556630;
+    }
+
+    /* Existing Responsive Styles */
     @media (max-width: 768px) {
       .blog-cards {
         grid-template-columns: repeat(2, 1fr);
@@ -381,8 +418,31 @@
         grid-template-columns: 1fr;
       }
 
-      .header h1 {
+      .header p {
         font-size: 1.6rem;
+      }
+    }
+    
+    /* Additional Responsive Styles for Full Responsiveness */
+    @media (max-width: 768px) {
+      /* Stack the upper container into one column */
+      .container {
+        grid-template-columns: 1fr;
+      }
+      /* Make small cards wrap in the upper section */
+      .small-cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .small-card {
+        flex: 1 1 calc(50% - 20px);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .small-card {
+        flex: 1 1 100%;
       }
     }
   </style>
@@ -392,31 +452,40 @@
   <div class="wrapper">
     <!-- Upper Section: Header and Featured Blogs -->
     <div class="header">
-      <h1>Latest Posts</h1>
+      <p>Populer Posts</p>
     </div>
     <div class="container">
-      <!-- Featured Blog (Big Card) -->
-      <div class="big-card">
-        <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
-          alt="Featured Image" />
-        <div class="content">
-          <div class="tags">
-            <span class="tag">Residential Fire Safety</span>
-            <span class="tag">Commercial Fire Safety</span>
-          </div>
-          <h2>Discover the Hidden Gems</h2>
-          <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await
-            you.</p>
-        </div>
-      </div>
-      <!-- Other Blogs (Small Cards) -->
-      <div class="small-cards">
-        <div class="small-card">
-          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
-            alt="Blog Image 1" />
+      <!-- Left Column: Two Featured Blogs (Big Cards) -->
+      <div>
+        <!-- First Featured Blog (Big Card) -->
+        <div class="big-card">
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg" alt="Featured Image" />
           <div class="content">
             <div class="tags">
-              <span class="tag">Fire Safety Equipment</span>
+              <span class="tag">Commercial Fire Safety</span>
+            </div>
+            <h2>Discover the Hidden Gems</h2>
+            <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await you.</p>
+          </div>
+        </div>
+        <!-- Second Featured Blog (Big Card) -->
+        <div class="big-card">
+          <img src="https://img.freepik.com/free-vector/firefighter-rescue-concept-illustration_114360-4434.jpg" alt="Featured Image 2" />
+          <div class="content">
+            <div class="tags">
+              <span class="tag">Residential Fire Safety</span>
+            </div>
+            <h2>Secrets of Safety</h2>
+            <p>Discover tips and innovative solutions for effective fire protection and prevention.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right Column: Other Blogs (Small Cards) -->
+      <div class="small-cards">
+        <div class="small-card">
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg" alt="Blog Image 1" />
+          <div class="content">
+            <div class="tags">
               <span class="tag">Fire Safety Software</span>
             </div>
             <h3>Tasty Treats to Try</h3>
@@ -424,11 +493,9 @@
           </div>
         </div>
         <div class="small-card">
-          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
-            alt="Blog Image 2" />
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg" alt="Blog Image 2" />
           <div class="content">
             <div class="tags">
-              <span class="tag">Fire Safety Inspections</span>
               <span class="tag">Fire Protection & Safety</span>
             </div>
             <h3>Latest Tech Innovations</h3>
@@ -436,11 +503,9 @@
           </div>
         </div>
         <div class="small-card">
-          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg"
-            alt="Blog Image 3" />
+          <img src="https://img.freepik.com/free-vector/fireman-holding-fire-extinguisher-flat-vector-illustration-man-firefighter-providing-safety-preventing-fire-putting-out-flame-caution-emergency-safety-training-concept_74855-24133.jpg" alt="Blog Image 3" />
           <div class="content">
             <div class="tags">
-              <span class="tag">Fire Safety Professionals</span>
               <span class="tag">Fire Safety Regulations & Code</span>
             </div>
             <h3>Tips for a Balanced Life</h3>
@@ -619,7 +684,8 @@
         const card = document.createElement("a");
         card.href = blog.link;
         card.className = "blog-card";
-        const categoryTags = blog.categories.map(cat => `<span class="tag">${cat}</span>`).join("");
+        // Render only the first category tag.
+        const categoryTags = blog.categories[0] ? `<span class="tag">${blog.categories[0]}</span>` : '';
         const keywordTags = blog.keywords.map(kw => `<span class="tag">${kw}</span>`).join("");
         card.innerHTML = `
           <img src="${blog.image}" alt="Blog ${blog.id}" />
@@ -666,7 +732,6 @@
         });
         paginationContainer.appendChild(pageButton);
       }
-      
 
       // Next Button
       const nextButton = document.createElement("button");
