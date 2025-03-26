@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,21 +12,25 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f4f4f4;
       padding: 20px;
     }
+
     .wrapper {
       max-width: 1500px;
       margin: 0 auto;
       padding: 0 15px;
     }
+
     /* Header Section */
     .header {
       text-align: left;
       margin-bottom: 30px;
     }
+
     .header h1 {
       font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
       font-size: 1.8rem;
@@ -36,6 +41,7 @@
       position: relative;
       padding-bottom: 10px;
     }
+
     .header h1::after {
       content: "";
       position: absolute;
@@ -46,6 +52,7 @@
       background: linear-gradient(45deg, #ff6b6b, #f06595);
       border-radius: 2px;
     }
+
     /* Upper Blog Grid (Featured and Small Blogs) */
     .container {
       display: grid;
@@ -55,35 +62,42 @@
       padding: 20px;
       border: 1px solid #ddd;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
     }
-    .big-card, .small-card {
+
+    .big-card,
+    .small-card {
       border-radius: 8px;
       overflow: hidden;
     }
+
     .big-card {
       display: flex;
       flex-direction: column;
       border: 1px solid #ddd;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     }
+
     .big-card img {
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
     }
+
     .big-card .content {
       padding: 15px;
       background-color: #fafafa;
       flex-grow: 1;
     }
+
     .big-card .tags {
       display: flex;
       gap: 10px;
       margin-bottom: 10px;
     }
+
     .big-card .tag {
       background: linear-gradient(45deg, #f06595, #ff6b6b);
       color: #fff;
@@ -92,37 +106,44 @@
       border-radius: 5px;
       transition: transform 0.3s;
     }
+
     .big-card .tag:hover {
       transform: scale(1.05);
     }
+
     .big-card h2 {
       margin-bottom: 10px;
       font-size: 1.8rem;
       color: #333;
     }
+
     .big-card p {
       font-size: 1rem;
       color: #555;
       line-height: 1.5;
     }
+
     .small-cards {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
+
     .small-card {
       display: flex;
       border: 1px solid #ddd;
       background: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
       overflow: hidden;
     }
+
     .small-card img {
       width: 40%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
     }
+
     .small-card .content {
       width: 60%;
       padding: 15px;
@@ -130,11 +151,13 @@
       flex-direction: column;
       justify-content: center;
     }
+
     .small-card .tags {
       display: flex;
       gap: 10px;
       margin-bottom: 5px;
     }
+
     .small-card .tag {
       background: linear-gradient(45deg, #f06595, #ff6b6b);
       color: #fff;
@@ -143,9 +166,11 @@
       border-radius: 5px;
       transition: transform 0.3s;
     }
+
     .small-card .tag:hover {
       transform: scale(1.1);
     }
+
     .small-card h3 {
       font-size: 1.6rem;
       color: #333;
@@ -154,14 +179,17 @@
       letter-spacing: 0.5px;
       transition: color 0.3s;
     }
+
     .small-card h3:hover {
       color: #ff6b6b;
     }
+
     /* All Category Tags Buttons (for filtering upper category tags) */
     .tags-filter {
       text-align: center;
       margin-bottom: 20px;
     }
+
     .tags-filter button {
       background: linear-gradient(45deg, #ff6b6b, #f06595);
       border: none;
@@ -173,18 +201,21 @@
       cursor: pointer;
       transition: transform 0.3s, opacity 0.3s;
     }
+
     .tags-filter button.active {
       opacity: 0.8;
       transform: scale(1.05);
     }
+
     .tags-filter button:hover {
       transform: scale(1.05);
     }
+
     /* Search Bar and Keyword Dropdown Styles */
     .search-container {
-      
       margin: 20px 0 30px;
     }
+
     .search-container input {
       width: 80%;
       max-width: 1180px;
@@ -195,9 +226,11 @@
       outline: none;
       transition: border-color 0.3s;
     }
+
     .search-container input:focus {
       border-color: #ff6b6b;
     }
+
     .search-container select {
       padding: 10px 15px;
       font-size: 1rem;
@@ -208,9 +241,11 @@
       outline: none;
       transition: border-color 0.3s;
     }
+
     .search-container select:focus {
       border-color: #ff6b6b;
     }
+
     /* Lower Blog Cards Grid (Paginated) */
     .blog-cards {
       display: grid;
@@ -218,65 +253,86 @@
       gap: 20px;
       margin-top: 30px;
     }
+
     .blog-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      border: 2px solid #ee5566;
+      border-radius: 25px;
       overflow: hidden;
       background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
       text-decoration: none;
       color: inherit;
+      background-color: #ee556630;
     }
+
     .blog-card img {
       width: 100%;
-      height: 200px;
+      height: 280px;
       object-fit: cover;
       display: block;
     }
+
     .blog-card .content {
       padding: 15px;
-      background-color: #fafafa;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
+
     .tags-container {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
+
     .tags-container.upper-tags {
       /* Upper (category) tags styling */
     }
+
     .tags-container.lower-tags {
-      margin-top: 10px;
+      margin-top: 15px;
       /* Lower (keyword) tags styling */
     }
+
     .tags-container .tag {
       display: inline-block;
-      background: linear-gradient(45deg, #f06595, #ff6b6b);
-      color: #fff;
-      padding: 3px 8px;
-      font-size: 0.75rem;
-      border-radius: 5px;
-      margin: 3px 5px 3px 0;
+    background: linear-gradient(45deg, #f06595, #ff6b6b);
+    color: #fff;
+    padding: 12px 12px;
+    font-size: 15px;
+    border-radius: 5px;
+    margin: 3px 5px 3px 0;
+    border: 2px solid white;
     }
+
+    /* NEW: Override for keyword tags (lower-tags) */
+    .tags-container.lower-tags .tag {
+      border: 2px solid #ee5566;
+      background: #fafafa;
+      color: #ee5566;
+      font-weight: 600;
+      padding: 7px 10px;
+    }
+
     .blog-card h2 {
       font-size: 1.6rem;
       color: #333;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
+
     .blog-card p {
       font-size: 1rem;
       color: #555;
       line-height: 1.4;
       flex-grow: 1;
     }
+
     /* Pagination Controls */
     .pagination {
       text-align: center;
       margin: 30px 0;
     }
+
     .pagination button {
       background: none;
       border: 1px solid #ddd;
@@ -286,36 +342,43 @@
       cursor: pointer;
       transition: background 0.3s, border-color 0.3s;
     }
+
     .pagination button:hover {
       background: #ff6b6b;
       border-color: #ff6b6b;
       color: #fff;
     }
+
     .pagination button.active {
       background: #f06595;
       border-color: #f06595;
       color: #fff;
     }
+
     /* Responsive Styles */
     @media (max-width: 768px) {
       .blog-cards {
         grid-template-columns: repeat(2, 1fr);
       }
+
       .tags-filter button {
         padding: 8px 12px;
         font-size: 0.8rem;
       }
     }
+
     @media (max-width: 480px) {
       .blog-cards {
         grid-template-columns: 1fr;
       }
+
       .header h1 {
         font-size: 1.6rem;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="wrapper">
     <!-- Upper Section: Header and Featured Blogs -->
@@ -325,20 +388,23 @@
     <div class="container">
       <!-- Featured Blog (Big Card) -->
       <div class="big-card">
-        <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Featured Image" />
+        <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+          alt="Featured Image" />
         <div class="content">
           <div class="tags">
             <span class="tag">Residential Fire Safety</span>
             <span class="tag">Commercial Fire Safety</span>
           </div>
           <h2>Discover the Hidden Gems</h2>
-          <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await you.</p>
+          <p>Explore unknown corners of the world and experience breathtaking scenery and cultural wonders that await
+            you.</p>
         </div>
       </div>
       <!-- Other Blogs (Small Cards) -->
       <div class="small-cards">
         <div class="small-card">
-          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 1" />
+          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+            alt="Blog Image 1" />
           <div class="content">
             <div class="tags">
               <span class="tag">Fire Safety Equipment</span>
@@ -348,7 +414,8 @@
           </div>
         </div>
         <div class="small-card">
-          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 2" />
+          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+            alt="Blog Image 2" />
           <div class="content">
             <div class="tags">
               <span class="tag">Fire Safety Inspections</span>
@@ -358,7 +425,8 @@
           </div>
         </div>
         <div class="small-card">
-          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg" alt="Blog Image 3" />
+          <img src="https://t4.ftcdn.net/jpg/06/29/35/69/360_F_629356922_KB0F6hwZpSItiNyolBXflK2rb46iaeBx.jpg"
+            alt="Blog Image 3" />
           <div class="content">
             <div class="tags">
               <span class="tag">Fire Safety Professionals</span>
@@ -388,7 +456,7 @@
     <!-- Pagination Controls -->
     <div class="pagination" id="pagination"></div>
   </div>
-  
+
   <script>
     // Global arrays for filtering.
     const globalCategories = [
@@ -404,7 +472,7 @@
       "Fire Safety Reports",
       "Fire Safety Businesses"
     ];
-    
+
     const globalKeywords = [
       "Smoke Detectors",
       "Fire Marshal",
@@ -432,7 +500,7 @@
       "Fire Safety Business",
       "Fire Hydrant"
     ];
-    
+
     // Render upper category tag filter buttons.
     const tagsFilterContainer = document.getElementById("tagsFilter");
     globalCategories.forEach(tag => {
@@ -441,7 +509,7 @@
       btn.setAttribute("data-tag", tag);
       tagsFilterContainer.appendChild(btn);
     });
-    
+
     // Populate keyword filter dropdown.
     const keywordFilterSelect = document.getElementById("keywordFilter");
     globalKeywords.forEach(keyword => {
@@ -450,22 +518,22 @@
       option.textContent = keyword;
       keywordFilterSelect.appendChild(option);
     });
-    
+
     // Variables to hold active filters.
     let activeCategory = "";
     let activeKeyword = "";
-    
+
     // Blog data generation (30 blogs with same feature image, random title, random categories and keywords).
-    const featureImage = "https://wallpapers.com/images/featured/phoenix-q1mlwb6w8fyykvir.jpg";
+    const featureImage = "https://img.freepik.com/premium-vector/firefighter-extinguishing-flame-character-rescuer-dangerous-job-fire-protection-fire-prevention_566886-3337.jpg?semt=ais_hybrid";
     const totalBlogs = 30;
     const blogs = [];
-    
+
     const titleWords = ["Inspiring", "Innovative", "Modern", "Creative", "Dynamic", "Efficient", "Reliable", "Exceptional"];
-    
+
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    
+
     function generateRandomTitle() {
       const words = [];
       for (let i = 0; i < 3; i++) {
@@ -473,7 +541,7 @@
       }
       return words.join(" ");
     }
-    
+
     function generateRandomCategories() {
       const count = getRandomInt(1, 2);
       const categories = [];
@@ -485,7 +553,7 @@
       }
       return categories;
     }
-    
+
     function generateRandomKeywords() {
       const count = getRandomInt(2, 4);
       const keywords = [];
@@ -497,7 +565,7 @@
       }
       return keywords;
     }
-    
+
     for (let i = 1; i <= totalBlogs; i++) {
       blogs.push({
         id: i,
@@ -509,11 +577,11 @@
         link: "#"  // placeholder link
       });
     }
-    
+
     // Pagination variables
     const blogsPerPage = 6;
     let currentPage = 1;
-    
+
     // Function to filter blogs based on active filters and search query.
     function getFilteredBlogs() {
       const searchQuery = document.getElementById("blogSearch").value.toLowerCase();
@@ -524,7 +592,7 @@
         return matchesCategory && matchesSearch && matchesKeyword;
       });
     }
-    
+
     // Function to render blog cards for the current page.
     function renderBlogs(page) {
       const container = document.getElementById("blogCards");
@@ -534,7 +602,7 @@
       const start = (page - 1) * blogsPerPage;
       const end = start + blogsPerPage;
       const pageBlogs = filteredBlogs.slice(start, end);
-      
+
       pageBlogs.forEach(blog => {
         const card = document.createElement("a");
         card.href = blog.link;
@@ -552,15 +620,15 @@
         `;
         container.appendChild(card);
       });
-      
+
       renderPagination(totalPages);
     }
-    
+
     // Function to render pagination controls.
     function renderPagination(totalPages) {
       const paginationContainer = document.getElementById("pagination");
       paginationContainer.innerHTML = "";
-      
+
       // Previous Button
       const prevButton = document.createElement("button");
       prevButton.textContent = "Previous";
@@ -572,7 +640,7 @@
         }
       });
       paginationContainer.appendChild(prevButton);
-      
+
       // Page Numbers
       for (let i = 1; i <= totalPages; i++) {
         const pageButton = document.createElement("button");
@@ -586,7 +654,7 @@
         });
         paginationContainer.appendChild(pageButton);
       }
-      
+
       // Next Button
       const nextButton = document.createElement("button");
       nextButton.textContent = "Next";
@@ -599,21 +667,21 @@
       });
       paginationContainer.appendChild(nextButton);
     }
-    
+
     // Update page rendering (blogs and pagination)
     function updatePage() {
       renderBlogs(currentPage);
     }
-    
+
     // Set up search event listener.
     document.getElementById("blogSearch").addEventListener("input", () => {
       currentPage = 1;
       updatePage();
     });
-    
+
     // Set up category tag filter event listeners.
     document.querySelectorAll(".tags-filter button").forEach(btn => {
-      btn.addEventListener("click", function() {
+      btn.addEventListener("click", function () {
         // Remove active state from all buttons and set active for clicked.
         document.querySelectorAll(".tags-filter button").forEach(b => b.classList.remove("active"));
         this.classList.add("active");
@@ -622,16 +690,17 @@
         updatePage();
       });
     });
-    
+
     // Set up keyword filter dropdown event listener.
-    document.getElementById("keywordFilter").addEventListener("change", function() {
+    document.getElementById("keywordFilter").addEventListener("change", function () {
       activeKeyword = this.value;
       currentPage = 1;
       updatePage();
     });
-    
+
     // Initially render blogs (all filters)
     updatePage();
   </script>
 </body>
+
 </html>
